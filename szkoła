@@ -45,6 +45,44 @@ public:
     {
         cout<<pobierzLicznik()<<"/"<<pobierzMianownik()<<endl;
     }
+
+void set(int l ,int m)
+{
+    licznik = l;
+    if (m==0) m=1;
+    mianownik = m;
+}
+void show()
+{
+cout << licznik << "/"<< mianownik<<endl;
+}
+static int nwd(int l, int m)
+{
+    while(l!=m)
+    {
+        if(l>m) l -=m;
+        else m-= 1;
+    }
+    return l;
+}
+void norm()
+{
+
+    if(licznik==0 || mianownik == 0) return;
+    int d = nwd(licznik, mianownik);
+    licznik /=d;
+    mianownik /=d;
+}
+CU& operator++()
+{
+    licznik += mianownik;
+    return*this;
+}
+CU& operator++(int)
+{
+    licznik+=mianownik;
+    return*this;
+}
 };
 
 int main()
@@ -55,5 +93,7 @@ int main()
    a.wypisz();
    b.wypisz();
    c.wypisz();
+   b.show();
+   c.show();
    return 0;
 }
